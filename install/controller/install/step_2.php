@@ -129,7 +129,7 @@ class ControllerInstallStep2 extends Controller {
 		$db = array(
 			'mysqli',
 			'pgsql',
-			'pdo'
+			'mpdo'
 		);
 
 		if (!array_filter($db, 'extension_loaded')) {
@@ -167,7 +167,7 @@ class ControllerInstallStep2 extends Controller {
 	}
 
 	private function validate() {
-		if (phpversion() < '7.3') {
+		if (phpversion() < '7.0') {
 			$this->error['warning'] = $this->language->get('error_version');
 		}
 
@@ -181,7 +181,7 @@ class ControllerInstallStep2 extends Controller {
 
 		$db = array(
 			'mysqli', 
-			'pdo', 
+			'mpdo', 
 			'pgsql'
 		);
 
