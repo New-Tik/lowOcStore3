@@ -185,7 +185,7 @@ class ControllerInstallStep3 extends Controller {
 
 		$db_drivers = array(
 			'mysqli',
-			'pdo',
+			'mpdo',
 			'pgsql'
 		);
 
