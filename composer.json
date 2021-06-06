@@ -1,0 +1,19 @@
+{
+    "name": "vendor/low-oc-store3",
+    "description": "Description of project lowOcStore3.",
+    "authors": [
+        {
+            "name": "Stanislav Stecenko",
+            "email": "stanislav.stecenko1993@gmail.com"
+        }
+    ],
+    "config": {
+        "vendor-dir": "./system/storage/vendor/"
+    },
+    "require": {
+        "php": ">=7.3.0",
+        "scssphp/scssphp": "dev-master",
+        "twig/twig": "v2.14.6",
+        "react/promise": "v2.8.0"
+    }
+}
