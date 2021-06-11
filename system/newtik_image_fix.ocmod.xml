@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xsi:noNamespaceSchemaLocation='file:/media/stas/Elements/stas/works/oc/ocmod.xsd'>
+    <name>newtik_image_fix.ocmod</name>
+    <code>newtik_image_fix.ocmod</code>
+    <version>1.0.0</version>
+    <author>Stanislav Stecenko</author>
+    <link>https://t.me/Stanislav_Stecenko</link>
+    
+    <file path="admin/model/tool/image.php|catalog/model/tool/image.php">
+        <operation>
+            <search><![CDATA[public function resize($filename, $width, $height) {]]></search>
+            <add position="before"><![CDATA[
+
+    // start newtik_image_fix.ocmod
+                
+    public function getUrl($image) {
+        
+        if ($this->request->server['HTTPS']) {
+			return HTTPS_CATALOG . 'image/' . $image;
+		} else {
+			return HTTP_CATALOG . 'image/' . $image;
+		}
+        
+    }
+
+    // end newtik_image_fix.ocmod
+
+            ]]></add>
+        </operation>
+        
+        <operation>
+            <search><![CDATA[return;]]></search>
+            <add position="replace"><![CDATA[
+
+    // start newtik_image_fix.ocmod
+                
+    return $this->getUrl('placeholder.png');
+
+    // end newtik_image_fix.ocmod
+
+            ]]></add>
+        </operation>
+        
+        <operation>
+            <search><![CDATA[return DIR_IMAGE . $image_old;]]></search>
+            <add position="replace"><![CDATA[
+
+    // start newtik_image_fix.ocmod
+                
+    return $this->getUrl($image_old;);
+
+    // end newtik_image_fix.ocmod
+
+            ]]></add>
+        </operation>
+    </file>
+    
+
+
+</modification>
