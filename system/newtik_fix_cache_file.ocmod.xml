@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+	<name><![CDATA[<font color="#E50223"><b>NewTik fix cache file</b></font>]]></name>
+	<code>newtik_fix_cache_file</code>
+	<version>1.0.1</version>
+	<author>NewTil</author>
+	<link></link>
+	
+	<file path="system/library/cache/file.php">
+	  <operation>
+        <search><![CDATA[unlink($file);]]></search>
+        <add position="replace"><![CDATA[if (!@unlink($file)) clearstatcache(false, $file);]]></add>
+	  </operation> 
+    </file>
+</modification>
