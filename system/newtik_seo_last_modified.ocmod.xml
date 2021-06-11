@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xsi:noNamespaceSchemaLocation='file:/media/stas/Elements/stas/works/oc/ocmod.xsd'>
+    <name>NewTik SEO Last-modified</name>
+    <code>newtik_seo_last_modified</code>
+    <version>2.0.1</version>
+    <author>NewTil</author>
+    <link>https://t.me/Stanislav_Stecenko</link>    
+    
+    <!-- System -->
+    <file path="system/library/document.php">
+        <operation>
+            <search><![CDATA[class Document {]]></search>
+            <add position="after"><![CDATA[
+    //start newtik_seo_last_modified
+    
+    private $seo_last_modified = false;
+
+    public function getSeoLastModified() {
+        
+        $LastModified = $this->seo_last_modified;
+        
+        if(!$LastModified) return;
+                
+        $LastModified_unix = (new DateTime())->getTimestamp();
+                
+        $IfModifiedSince = false;
+
+        if (isset($_ENV['HTTP_IF_MODIFIED_SINCE']))
+            $IfModifiedSince = strtotime(substr($_ENV['HTTP_IF_MODIFIED_SINCE'], 5));
+
+        if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']))
+            $IfModifiedSince = strtotime(substr($_SERVER['HTTP_IF_MODIFIED_SINCE'], 5));
+
+        if ($IfModifiedSince && $IfModifiedSince >= $LastModified_unix) {
+            header($_SERVER['SERVER_PROTOCOL'] . ' 304 Not Modified');
+            return;
+        }
+
+        header('Last-Modified: ' . gmdate("D, d M Y H:i:s \G\M\T", strtotime($LastModified)));
+        
+    }
+
+    public function setSeoLastModified($seo_last_modified) {$this->seo_last_modified = $seo_last_modified;}
+    
+    //end newtik_seo_last_modified
+            ]]></add>
+        </operation>
+    </file>
+    <!-- end System -->
+    
+    <!-- Catalog -->
+    <file path="catalog/controller/common/header.php">
+        <operation>
+            <search><![CDATA[public function index() {]]></search>
+            <add position="after"><![CDATA[
+                //start newtik_seo_last_modified
+                
+                $this->document->getSeoLastModified();
+                
+                //end newtik_seo_last_modified
+            ]]></add>
+        </operation>
+    </file>
+    
+    <file path="catalog/controller/product/product.php">
+        <operation>
+            <search><![CDATA[$this->document->setKeywords($product_info['meta_keyword']);]]></search>
+            <add position="before"><![CDATA[
+                //start newtik_seo_last_modified
+                
+                $this->document->setSeoLastModified($product_info['date_modified']);
+                
+                //end newtik_seo_last_modified
+            ]]></add>
+        </operation>
+    </file>
+    
+    <file path="catalog/controller/product/category.php">
+        <operation>
+            <search><![CDATA[$this->document->setKeywords($category_info['meta_keyword']);]]></search>
+            <add position="before"><![CDATA[
+                //start newtik_seo_last_modified
+                
+                $this->document->setSeoLastModified($category_info['date_modified']);
+                
+                //end newtik_seo_last_modified
+            ]]></add>
+        </operation>
+    </file>
+    <!-- end Catalog -->
+</modification>
