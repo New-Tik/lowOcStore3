@@ -1,8 +1,19 @@
 <?php
 class ModelToolImage extends Model {
+    
+    public function geturl($image) {
+        
+        if ($this->request->server['HTTPS']) {
+			return HTTPS_CATALOG . 'image/' . $image;
+		} else {
+			return HTTP_CATALOG . 'image/' . $image;
+		}
+        
+    }
+    
 	public function resize($filename, $width, $height) {
 		if (!is_file(DIR_IMAGE . $filename) || substr(str_replace('\\', '/', realpath(DIR_IMAGE . $filename)), 0, strlen(DIR_IMAGE)) != str_replace('\\', '/', DIR_IMAGE)) {
-			return;
+			return $this->geturl('placeholder.png'); 
 		}
 
 		$extension = pathinfo($filename, PATHINFO_EXTENSION);
@@ -14,7 +25,7 @@ class ModelToolImage extends Model {
 			list($width_orig, $height_orig, $image_type) = getimagesize(DIR_IMAGE . $image_old);
 				 
 			if (!in_array($image_type, array(IMAGETYPE_PNG, IMAGETYPE_JPEG, IMAGETYPE_GIF))) { 
-				return DIR_IMAGE . $image_old;
+				return $this->geturl($image_old); 
 			}
 						
 			$path = '';
