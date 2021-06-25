@@ -11,4 +11,5 @@ return array(
     'Symfony\\Polyfill\\Ctype\\' => array($vendorDir . '/symfony/polyfill-ctype'),
     'ScssPhp\\ScssPhp\\' => array($vendorDir . '/scssphp/scssphp/src'),
     'React\\Promise\\' => array($vendorDir . '/react/promise/src'),
+    'Leafo\\ScssPhp\\' => array($vendorDir . '/leafo/scssphp/src'),
 );

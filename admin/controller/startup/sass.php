@@ -11,6 +11,7 @@ class ControllerStartupSass extends Controller {
 				$stylesheet = DIR_APPLICATION . 'view/stylesheet/' . $filename . '.css';
 
 				if (!is_file($stylesheet) || !$this->config->get('developer_sass')) {
+                    /*
 					$scss = new \ScssPhp\ScssPhp\Compiler();
 					$scss->setImportPaths(DIR_APPLICATION . 'view/stylesheet/');
 
@@ -27,6 +28,8 @@ class ControllerStartupSass extends Controller {
 					flock($handle, LOCK_UN);
 
 					fclose($handle);
+                     * 
+                     */
 				}
 			}
 		}

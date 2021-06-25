@@ -14,6 +14,7 @@
         "php": ">=7.3.0",
         "scssphp/scssphp": "dev-master",
         "twig/twig": "v2.14.6",
-        "react/promise": "v2.8.0"
+        "react/promise": "v2.8.0",
+        "leafo/scssphp": "v0.8.4"
     }
 }

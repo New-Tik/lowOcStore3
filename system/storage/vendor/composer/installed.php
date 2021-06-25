@@ -6,11 +6,20 @@
     'aliases' => 
     array (
     ),
-    'reference' => '9b22d9f9bb1232bf3679359af38328a2563930f3',
+    'reference' => '150d5e3f79d31cc5dc20af907665c1c91178ef88',
     'name' => 'vendor/low-oc-store3',
   ),
   'versions' => 
   array (
+    'leafo/scssphp' => 
+    array (
+      'pretty_version' => 'v0.8.4',
+      'version' => '0.8.4.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'b9cdea3e42c3bcb1a9faafd04ccce4e8ec860ad9',
+    ),
     'react/promise' => 
     array (
       'pretty_version' => 'v2.8.0',
@@ -64,7 +73,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '9b22d9f9bb1232bf3679359af38328a2563930f3',
+      'reference' => '150d5e3f79d31cc5dc20af907665c1c91178ef88',
     ),
   ),
 );

@@ -27,6 +27,10 @@ class ComposerStaticInit0fbe02c37982b11728a95d77b780b201
         array (
             'React\\Promise\\' => 14,
         ),
+        'L' => 
+        array (
+            'Leafo\\ScssPhp\\' => 14,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -49,6 +53,10 @@ class ComposerStaticInit0fbe02c37982b11728a95d77b780b201
         'React\\Promise\\' => 
         array (
             0 => __DIR__ . '/..' . '/react/promise/src',
+        ),
+        'Leafo\\ScssPhp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/leafo/scssphp/src',
         ),
     );
 
