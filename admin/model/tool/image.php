@@ -1,16 +1,6 @@
 <?php
 class ModelToolImage extends Model {
     
-    public function geturl($image) {
-        
-        if ( $this->request->server['HTTPS'] ) {
-			return HTTPS_CATALOG . 'image/' . $image;
-		} else {
-			return HTTP_CATALOG . 'image/' . $image;
-		}
-        
-    }
-    
 	public function resize($filename, $width, $height) {
 		if (!is_file(DIR_IMAGE . $filename) || substr(str_replace('\\', '/', realpath(DIR_IMAGE . $filename)), 0, strlen(DIR_IMAGE)) != str_replace('\\', '/', DIR_IMAGE)) {
             return $this->geturl('placeholder.png'); 
@@ -48,11 +38,17 @@ class ModelToolImage extends Model {
 				copy(DIR_IMAGE . $image_old, DIR_IMAGE . $image_new);
 			}
 		}
-
-		if ($this->request->server['HTTPS']) {
-			return HTTPS_CATALOG . 'image/' . $image_new;
-		} else {
-			return HTTP_CATALOG . 'image/' . $image_new;
-		}
+        
+        return $this->geturl($image_new);
 	}
+    
+    public function geturl($image) {
+        
+        if ( $this->request->server['HTTPS'] ) {
+			return $this->config->get('config_ssl') . 'image/' . $image;
+		} else {
+			return $this->config->get('config_url') . 'image/' . $image;
+		}
+        
+    }
 }
