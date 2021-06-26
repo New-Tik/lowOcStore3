@@ -3,7 +3,7 @@ class ModelToolImage extends Model {
     
     public function geturl($image) {
         
-        if ($this->request->server['HTTPS']) {
+        if ( $this->request->server['HTTPS'] ) {
 			return HTTPS_CATALOG . 'image/' . $image;
 		} else {
 			return HTTP_CATALOG . 'image/' . $image;
